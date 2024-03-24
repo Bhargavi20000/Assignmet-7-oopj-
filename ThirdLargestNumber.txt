@@ -1,0 +1,31 @@
+package in.acts.cdac;
+
+public class ThirdLargestNumber {
+    public static void main(String[] args) {
+        int[] numbers = {24, 54, 31, 16, 82, 45, 67};
+        int thirdLargest = findThirdLargest(numbers);
+        System.out.println("The third-largest number is: " + thirdLargest);
+    }
+
+    public static int findThirdLargest(int[] arr) {
+        int firstLargest = Integer.MIN_VALUE;
+        int secondLargest = Integer.MIN_VALUE;
+        int thirdLargest = Integer.MIN_VALUE;
+
+        for (int num : arr) {
+            if (num > firstLargest) {
+                thirdLargest = secondLargest;
+                secondLargest = firstLargest;
+                firstLargest = num;
+            } else if (num > secondLargest && num < firstLargest) {
+                thirdLargest = secondLargest;
+                secondLargest = num;
+            } else if (num > thirdLargest && num < secondLargest) {
+                thirdLargest = num;
+            }
+        }
+
+        return thirdLargest;
+    }
+}
+
